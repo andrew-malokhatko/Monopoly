@@ -9,9 +9,7 @@ from server import *
 
 dice = Dice()
 timer = pygame.time.Clock()
-
 players = pygame.sprite.Group()
-
 
 while True:
     if color_initialized[0]:
@@ -23,18 +21,16 @@ def roll_dice():
     player.move()
 
 def twoK():
-    giveaway(2000)
+    pass
+    buffer.append(Event(type = "giveaway", data = (player_bal[0], 2000 ,player_args[0])))
 
 def fivK():
-    giveaway(5000)
-
-def giveaway(money):
-    global player_bal
-    bal = player_bal[0]
-    player_bal[0] = (bal + money)
+    pass
+    buffer.append(Event(type = "giveaway", data = (player_bal[0], 5000 ,player_args[0])))
 
 def chance():
-    giveaway(random.randint(-1000, 1000))
+    pass
+    buffer.append(Event(type = "giveaway", data = (player_bal[0],random.randint(-1000, 1000) ,player_args[0])))
 
 def bet():
     pass

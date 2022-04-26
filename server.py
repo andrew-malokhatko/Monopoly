@@ -87,6 +87,16 @@ class Server:
                         ic("not ur turn")
                         moved = False
 
+            if ev.type == "giveaway": # ev.data = player.bal, sum, name
+                for arg in self.enemy_args:
+                    if arg[0] == ev.data[2]:
+                        arg_ind = self.indexof(arg[0], self.enemy_args, 0)
+                        new_bal = ev.data[0] + ev.data[1]
+                        arg = (arg[0], arg[1], arg[2], new_bal)
+                        self.enemy_args[arg_ind] = arg
+                        with print_lock:
+                            ic(arg)
+
             if ev.type == "pay":
                 if len(bought_companies) > 0: #ev.data = player bal, company name, block pays,name
                     returnd, pay_ind, owner = oleg(ev.data[1]) 
