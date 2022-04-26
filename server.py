@@ -1,5 +1,3 @@
-from cgi import print_arguments
-from logging import getLoggerClass
 from classes import *
 import socket
 from threading import Thread

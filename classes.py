@@ -69,8 +69,8 @@ class Player(pygame.sprite.Sprite):
                 
     def buy(self):
         global player_args
-        right_pos, block = self.zaloopa()
-        if right_pos:
+        block = self.zaloopa()
+        if block != None:
             try:
                 with print_lock:
                     ic(player_args)
@@ -78,16 +78,15 @@ class Player(pygame.sprite.Sprite):
             except:
                 with print_lock:
                     ic("tried to buy chance")
-    
+
     def pay(self):
-        right_pos, block = self.zaloopa()
+        block = self.zaloopa()
         if block != None:
             try:
                 block.group = block.group
             except:
                 return
-            if right_pos:
-                buffer.append(Event(type = "pay", data = (self.balance, block.name, block.pays, player_args[0])))################
+            buffer.append(Event(type = "pay", data = (self.balance, block.name, block.pays, player_args[0])))################
 
     def dima(self, block):
         for company in bought_companies:
@@ -98,7 +97,7 @@ class Player(pygame.sprite.Sprite):
     def zaloopa(self):
         for block in self.blocks:
             if block.index == self.tile:
-                return True, block
+                return block
         return None
 
     def move(self):
